@@ -1,20 +1,21 @@
 //console.log("Amarjit Singh")
 var readlineSync = require('readline-sync')
+var chalk = require('chalk');
 var score=0;
-var username = readlineSync.question("Tell us your name ")
-console.log("Welcome "+username+" Get Ready to take a quiz on Office!!")
+var username = readlineSync.question(chalk.underline.yellow("Tell us your name")+" ")
+console.log(chalk.bold.magenta.bgWhite("Welcome "+username+" Get Ready to take a quiz on Office!!"))
 
 function play(question,answer) {
-  var userAnswer = readlineSync.question(question);
+  var userAnswer = readlineSync.question(chalk.cyan(question));
   if (userAnswer===answer) {
-    console.log("You are right!")
+    console.log(chalk.cyan.bgGreen.bold("You are right!"))
     score+=1
   } else {
-    console.log("You are wrong!")
+    console.log(chalk.black.bgRed.bold("You are wrong!"))
   }
-  console.log("-----------------")
-  console.log("Your Score is: "+score)
-  console.log("-----------------")
+  console.log(chalk.red("-----------------"))
+  console.log(chalk.blue.bgYellow("Your Score is:"+" "+score))
+  console.log(chalk.red("-----------------"))
 }
 
 var questions = [
@@ -34,11 +35,11 @@ var questions = [
 
 for (var i=0;i<questions.length;i++){
   var currentquestion=questions[i]
-  play(currentquestion.question,currentquestion.answer,currentquestion.options)
+  play(currentquestion.question,currentquestion.answer)
 }
 
 console.log("-----------------")
-console.log("Your Final Score is: "+score)
+console.log(chalk.yellow.bold("Your Final Score is: "+score))
 console.log("-----------------")
 
 
